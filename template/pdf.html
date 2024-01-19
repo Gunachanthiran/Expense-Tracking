@@ -1,0 +1,99 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>PDF</title>
+        <link href="{% static 'main.css' %}" rel="stylesheet">
+        <link href="{% static 'sign_pad.css' %}" rel="stylesheet"> 
+        <style>
+            .heading{
+                text-align: center;
+                color: royalblue;
+            }
+
+            .pub-bill{
+                text-align: center;
+            }
+
+            td{
+                font-size: 20px;
+            }
+
+            .room-address{
+                text-align: right;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="heading">PUB BILL</h1>
+
+            <address class="room-address">
+                <i>
+                    Blk 302 #01-41, <br>
+                    Ubi Avenue 1 <br>
+                    Singapore 400302.
+                </i>
+            </address>
+
+            <br> <br>
+
+            <div class="pub-bill">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <tr>
+                        <td>Previous Date</td>
+                        <td>{{pub.pre_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Previous Reading</td>
+                        <td>{{pub.prev_read}}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Date</td>
+                        <td>{{pub.cur_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Reading</td>
+                        <td>{{pub.cur_read}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Units</td>
+                        <td>{{pub.total_units}}</td>
+                    </tr>
+                    <tr>
+                        <td>Refuse Removal</td>
+                        <td>$ {{pub.refuse_amt}}</td>
+                    </tr>
+                    <tr>
+                        <td>Water Utility</td>
+                        <td>$ {{pub.water_amt}}</td>
+                    </tr>
+                    <tr>
+                        <td>GST</td>
+                        <td>{{pub.gst}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Amount</td>
+                        <td>$ {{ pub.total_amt|floatformat:2 }}</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="mysign-block">
+                <h4>Signature</h4>
+                <div class="wrapper">
+                    <canvas id="signature-pad" class="signature-pad" width=400 height=200 style="display: block;border: 1px solid;"></canvas>
+                </div>
+                <div>
+                    <button id="clear">Clear</button>
+                </div>
+            </div>
+            
+        </div>
+
+        
+          <script src="{% static 'scripts/signature2.js' %}"></script>
+          <script src="{% static 'scripts/signature1.js' %}"></script>
+    </body>
+</html>
